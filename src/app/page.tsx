@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
+import { useIsomorphicLayoutEffect } from "@/gsapHelper/isomophicEffect";
 // import { useDispatch, useSelector } from "react-redux";
 // import { RootState } from "@/redux/store";
 // import { decrement, increment } from "@/redux/features/counterSlice";
@@ -18,7 +19,7 @@ export default function Home() {
   const informationRefs = useRef<(HTMLDivElement | null)[]>([]);
   const silhouetteRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.set(informationRefs.current[0], { yPercent: 100 });
     gsap.set(informationRefs.current[1], { yPercent: 100 });
     gsap.set(informationRefs.current[2], { yPercent: 100 });
