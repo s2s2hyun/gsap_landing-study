@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Bebas+Neue|Ubuntu|Raleway&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,6 +18,15 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: #e5e5e5;
+  text-transform: uppercase;
+  font-family: ubuntu;
 }
