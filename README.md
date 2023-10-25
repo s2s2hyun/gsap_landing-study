@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+[screen-recording.webm](https://github.com/s2s2hyun/gsap_landing-study/assets/100761993/337c8757-8e4e-432a-ab92-0043664f6380)
+
+
+
 ## Getting Started
 
 First, run the development server:
