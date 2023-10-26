@@ -1,19 +1,62 @@
 "use client";
 
 import Image from "next/image";
-
-import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 import { useIsomorphicLayoutEffect } from "@/gsapHelper/isomophicEffect";
 import { Swiper, SwiperSlide } from "swiper/react";
 import img1 from "../../public/img-1.png";
 import img2 from "../../public/img-2.png";
 import img3 from "../../public/img-3.png";
-import { Pagination } from "swiper/modules";
+import { Pagination, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
 export default function Home() {
   const root = useRef(null);
+
+  const [active, setActive] = useState<number>(0);
+
+  useIsomorphicLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      if (active === 0 || active === undefined) {
+        gsap.from(".yellow", { y: "-1000", duration: 2 });
+        gsap.from(".black", { y: "1000", duration: 2 });
+        gsap.from(".img", { x: "1000", duration: 2 });
+        gsap.from(".big span", {
+          y: "100",
+          opacity: 0,
+          delay: 1,
+          stagger: 0.2,
+        });
+        gsap.from(".small", { y: "100", opacity: 0, delay: 2 });
+      } else if (active === 1) {
+        gsap.from(".red", { y: "-1000", duration: 2 });
+        gsap.from(".black", { y: "1000", duration: 2 });
+        gsap.from(".img", { x: "1000", duration: 2 });
+        gsap.from(".big span", {
+          y: "100",
+          opacity: 0,
+          delay: 1,
+          stagger: 0.2,
+        });
+        gsap.from(".small", { y: "100", opacity: 0, delay: 2 });
+      } else if (active === 2) {
+        gsap.from(".blue", { y: "-1000", duration: 2 });
+        gsap.from(".black", { y: "1000", duration: 2 });
+        gsap.from(".img", { x: "1000", duration: 2 });
+        gsap.from(".big span", {
+          y: "100",
+          opacity: 0,
+          delay: 1,
+          stagger: 0.2,
+        });
+        gsap.from(".small", { y: "100", opacity: 0, delay: 2 });
+      }
+    }, root);
+
+    return () => ctx.revert();
+  }, [active]);
 
   return (
     <>
@@ -30,12 +73,13 @@ export default function Home() {
             },
           }}
           onActiveIndexChange={(swiper) => {
-            console.log(swiper);
+            console.log(swiper.activeIndex);
+            setActive(swiper.activeIndex);
           }}
           speed={1000}
           direction="vertical"
           mousewheel={true}
-          modules={[Pagination]}
+          modules={[Pagination, Mousewheel]}
           className="mySwiper h-screen bg-red-200">
           <SwiperSlide className="w-full h-full bg-slate-400 relative">
             <div className="yellow absolute top-0 h-full bottom-0 w-[40%] bg-[#edca29] "></div>
@@ -53,7 +97,7 @@ export default function Home() {
                 </div>
               </div>
               {/* img  */}
-              <div className="image relative   h-[50%] w-[50%] mt-[120px]">
+              <div className="img relative   h-[50%] w-[50%] mt-[120px]">
                 <Image
                   alt=""
                   src={img1}
